@@ -2,6 +2,8 @@
 
 A risk-scoring tool for low-cap tokens. Lumen combines **off-chain** signals (promotion patterns, public sentiment, disclosure quality) with **on-chain** signals (holder concentration, holder dynamics, price drop) to flag tokens that look like prior rugs — ideally *before* a retail buyer commits money.
 
+![timeline](timeline.png)
+
 For the full motivation, methodology, and case study, see the accompanying report.
 
 ---
@@ -16,6 +18,7 @@ The pipeline runs in two parallel branches that meet at a final scoring step.
 
 **Risk score.** Each branch produces a feature vector. The final score is computed as a weighted deviation from an "ideal token" reference point, then mapped through a sigmoid to a bounded score in $[0, 1]$.
 
+![model](model_diagram.png)
 ---
 
 ## Setup
