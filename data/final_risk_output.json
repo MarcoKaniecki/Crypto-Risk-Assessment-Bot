@@ -1,0 +1,89 @@
+{
+  "token": "KIDS",
+  "address": "0x7acf49997e9598843cb9051389fa755969e551bb",
+  "methodology": "Each metric is normalized to a [0,1] deviation from an 'ideal token' baseline toward a worst-case value. Metrics may use a non-linear curve where appropriate (e.g. price_drop is concave with curve=0.5, so a 40% crash already scores ~0.7 rather than 0.5, reflecting that moderate drops are themselves strong signals). Per-metric deviations are weighted-averaged within the off-chain and on-chain blocks, the two blocks are combined (40/60), and the result is mapped through a sigmoid (k=10, x0=0.35) to a 0-100 risk score; the inflection at 0.35 reflects the prior that scanned tokens skew risky, so moderate deviations land in the 60s rather than the 50s. The on-chain block tracks both holder_count (catches lack of organic adoption) and holder_growth_rate (catches sybil-inflated adoption from bot wallets). holder_growth_rate is computed as the per-day delta in holders between consecutive snapshots, so it measures genuine onboarding velocity rather than a cumulative average; this lets the model distinguish 'launch-day wallet flood', 'organic growth', and 'holders exiting' as separate signals. Metrics that cannot yet be meaningfully measured (e.g. price_drop on launch day) are skipped and the remaining weights are renormalized, so absent evidence does not get treated as positive evidence. A Monte Carlo pass with Gaussian noise on the inputs produces a 5th-95th percentile band to express the uncertainty.",
+  "explanation": "Across sources, the dominant picture is that “charity” tokens—often using copycat SAFE/FAIR branding and donation-tax narratives—fit a repeatable pump-and-dump/rug-pull template, with multiple red flags like anonymous teams, legitimacy-theater donations, and unverifiable audit/doxx claims. While the Reddit-style discussions are largely cautionary (moderate credibility but limited hard proof and middling disclosure), one source is outright FOMO shilling leveraging celebrity endorsements, withheld contract details, and opaque compensation/allocations—collectively indicating elevated scam-pattern risk rather than a legitimate charitable project.",
+  "reports": [
+    {
+      "date": "pre-launch",
+      "phase": "before launch",
+      "risk_score": 83.1,
+      "risk_band": {
+        "median": 83.1,
+        "p05": 75.2,
+        "p95": 89.3
+      },
+      "off_chain_deviation": 0.509,
+      "on_chain_deviation": null,
+      "skipped_metrics": [
+        "top10_pct",
+        "top50_pct",
+        "holder_count",
+        "holder_growth_rate",
+        "price_drop"
+      ]
+    },
+    {
+      "date": "2021-06-05",
+      "phase": "launch+pump - June 5",
+      "risk_score": 80.9,
+      "risk_band": {
+        "median": 80.8,
+        "p05": 75.3,
+        "p95": 85.2
+      },
+      "off_chain_deviation": 0.509,
+      "on_chain_deviation": 0.484,
+      "on_chain_metrics": {
+        "top10_pct": 0.1275,
+        "top50_pct": 0.3288,
+        "holder_count": 7125,
+        "holder_growth_rate": 7125.0,
+        "price_drop": null
+      },
+      "skipped_metrics": [
+        "price_drop"
+      ]
+    },
+    {
+      "date": "2021-06-06",
+      "phase": "dump",
+      "risk_score": 76.8,
+      "risk_band": {
+        "median": 76.6,
+        "p05": 71.7,
+        "p95": 81.2
+      },
+      "off_chain_deviation": 0.509,
+      "on_chain_deviation": 0.443,
+      "on_chain_metrics": {
+        "top10_pct": 0.1032,
+        "top50_pct": 0.1971,
+        "holder_count": 8471,
+        "holder_growth_rate": 1346.0,
+        "price_drop": 0.4346
+      },
+      "skipped_metrics": []
+    },
+    {
+      "date": "2021-06-07",
+      "phase": "post-dump",
+      "risk_score": 82.1,
+      "risk_band": {
+        "median": 82.1,
+        "p05": 78.1,
+        "p95": 85.4
+      },
+      "off_chain_deviation": 0.509,
+      "on_chain_deviation": 0.497,
+      "on_chain_metrics": {
+        "top10_pct": 0.1009,
+        "top50_pct": 0.1904,
+        "holder_count": 8417,
+        "holder_growth_rate": 0.0,
+        "price_drop": 0.8622
+      },
+      "skipped_metrics": []
+    }
+  ]
+}
