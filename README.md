@@ -8,6 +8,12 @@ For the full motivation, methodology, and case study, see the accompanying repor
 
 ---
 
+## Case Study: Save The Kids (KIDS)
+
+The included example runs the pipeline end-to-end on **Save The Kids (KIDS)**, a June 2021 token promoted by the FaZe Clan esports organization that collapsed within hours of launch in what is now a confirmed pump-and-dump scheme. KIDS is a useful test case because the outcome is known, the promotion history is visible, and historical on-chain data is still retrievable, meaning we can check whether Lumen's score at each snapshot lines up with what actually happened. The `data/off-chain_input.json` file ships with the curated source corpus for KIDS, and the on-chain snapshots are configured against the KIDS/WBNB pair on BNB Chain.
+
+---
+
 ## How It Works
 
 The pipeline runs in two parallel branches that meet at a final scoring step.
